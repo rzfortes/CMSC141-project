@@ -45,7 +45,7 @@ public class ExtractPartsOfSpeech {
             String line = null;
             String partofspeech = "";
             while((line = bufferedReader.readLine()) != null) {
-                partofspeech = line.substring(line.indexOf(',')+1, line.length()-1);
+                partofspeech = line.substring(line.indexOf(',')+1, line.length());
                 System.out.println("checking.." + partofspeech);
                 listofparts.add(partofspeech);
             }
