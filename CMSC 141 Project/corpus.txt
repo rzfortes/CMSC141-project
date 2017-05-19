@@ -2935,7 +2935,7 @@ sa bisan unsang paagiha,ADV
 sa daplin,PREP
 sa dili pa,PREP
 sa gawas,ADV
-sa gawas,PREP
+sa gawas,PREPs
 sa ibabaw,PREP
 sa ibabaw,PREP
 sa ilalom,PREP
@@ -3198,8 +3198,6 @@ tigre,NN
 tigulang,NN
 tigulang,ADJ
 tiil,NN
-tiil,NN
-tiil,NN
 tiket,NN
 tiki,NN
 timbang,NN
@@ -3381,44 +3379,3 @@ yamog,NN
 yano,ADJ
 yawi,NN
 yuta,NN
-bahin,PREP
-batok,PREP
-duol,PREP
-hangtod,PREP
-hinuon,PREP
-human,PREP
-imbis,PREP
-kapin,PREP
-kay,PREP
-kuyog,PREP
-lahos,PREP
-pinaagi,PREP
-sa,PREP
-sa atbang,PREP
-sa atubangan,PREP
-sa daplin,PREP
-sa dili pa,PREP
-sa gawas,PREP
-sa ibabaw,PREP
-sa ibabaw,PREP
-sa ilalom,PREP
-sa itaas,PREP
-sa kilid,PREP
-sa likod,PREP
-sa luyo,PREP
-sa sulod,PREP
-sa taliwala,PREP
-sa tunga,PREP
-sa tupad,PREP
-sa ubos,PREP
-sa wala pa,PREP
-sa walay,PREP
-sukad pa,PREP
-sulod,PREP
-supak,PREP
-uban,PREP
-alang,FOR
-para,FOR
-ang,NNI
-og,NNI
-sa,NNI
