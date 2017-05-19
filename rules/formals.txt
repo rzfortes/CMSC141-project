@@ -8,7 +8,6 @@ Start state
 S
 
 Productions
-S -> NN + si + NN
 S -> NN + ang + NN
 S -> Ang + NN + NN
 S -> ADJ + si + NN
