@@ -1,0 +1,53 @@
+Non-terminals
+S, PP, SP, AP, C, O, DO, IO, OC
+
+Terminals
+NN, ADJ, VRB, PREP, FOR, FROM, NNP, PZ, NNI, LK
+
+Start state
+S
+
+Productions
+S -> NN + si + NN
+S -> NN + ang + NN
+S -> Ang + NN + NN
+S -> ADJ + si + NN
+S -> ADJ + ang + NN
+S -> ADV + ang + NN
+S -> PP + ang + NN
+S -> VRB + SP + PP
+S -> VRB + SP + AP
+S -> VRB + C + SP
+S -> VRB + SP
+S -> VRB + O + SP
+S -> VRB + SP + DO + IO
+S -> VRB + OC + O + SP
+S -> VRB + SP + O + OC
+S -> VRB + SP + O + PP
+PP -> PREP + sa + NN
+PP -> PREP + NN
+PP -> PREP + ni + NN
+PP -> PREP + kang + NN
+PP -> FOR + sa + NN
+PP -> FOR + NN
+PP -> FOR + ni + NN
+PP -> FOR + kang + NN
+PP -> FROM + sa + NN
+PP -> FROM + NN
+PP -> FROM + ni + NN
+PP -> FROM + kang + NN
+SP -> NN
+SP -> NNP
+SP -> NNI + NN
+SP -> PZ + NN
+SP -> NNI + PZ + NN
+SP -> si + NN
+AP -> og + ADJ
+AP -> og + NBR + LK + NN
+AP -> ADV
+C -> og + NN
+O -> og + NN
+DO -> og + NN
+IO -> sa + NN
+OC -> FOR + NNP
+OC -> FROM + NNP
