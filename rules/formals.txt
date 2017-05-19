@@ -50,3 +50,19 @@ DO -> og + NN
 IO -> sa + NN
 OC -> FOR + NNP
 OC -> FROM + NNP
+
+Semantic tags used:
+A - General & Abstract Terms
+B - The Body & The Individual
+F - Food & Farming
+G - Govt. & The Public Domain
+H - Architecture, Buildings, Houses & The Home
+I - Money & Commerce
+K - Entertainment, Sports & Games
+L - Life & Living Things
+M - Movement, Location, Travel & Transport
+O - Substances, Materials, Objects
+S - Social Actions, States & Processes
+T - Time
+W - The World & Our Environment
+X - Psychological Actions, States & Processes
