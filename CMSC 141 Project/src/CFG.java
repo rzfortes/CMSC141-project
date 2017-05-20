@@ -7,6 +7,7 @@ public class CFG {
 	HashMap<String, ArrayList<String>> prod = new HashMap<String, ArrayList<String>>();	
 	List<String> split_rhs;
 	ArrayList<String> lhs_values;	
+	char category;
 
 	//datastruct for storing rules
 	ArrayList <ArrayList <String>> angProd = new ArrayList <ArrayList <String>> ();
@@ -47,7 +48,7 @@ public class CFG {
 		Random rand = new Random();
 		
 		randomProd = prod.get(symbol);
-
+		// System.out.println(" >>>>> POSSIBLE PRODUCTIONS ARE " + randomProd);
 		// System.out.println(symbol);
 		// System.out.println(prod);		
 		// System.out.println(randomProd.size());
@@ -68,9 +69,9 @@ public class CFG {
 		} else {
 
 			if(prod.keySet().contains(str)) {
-					sentence += generateRandom(str);
+				sentence += generateRandom(str);
 			} else {
-					sentence += str + " ";
+				sentence += str + " ";
 			}
 		}
 		
@@ -128,7 +129,14 @@ public class CFG {
 			while((currentLine = br.readLine()) != null) {
 				// System.out.println(currentLine);
 				String split[] = currentLine.split(",");
-				addProd(split[0], split[1]);
+				if(split[1].equals("NN")) {
+					if(split[2].charAt(0) == this.category) {
+						System.out.println(split[0] + " is in category " + split[2]);
+						addProd(split[0], split[1]);
+					}
+				} else {
+					addProd(split[0], split[1]);
+				}
 			}		
 		} 
 		catch (IOException e){
@@ -138,13 +146,36 @@ public class CFG {
 	public static void main(String[] args) {
 		int flag = 0;
 
+		System.out.println("What category?");
+		System.out.println("A - General & Abstract Terms");
+		System.out.println("B - The Body & The Individual");
+		System.out.println("F - Food & Farming");
+		System.out.println("G - Govt. & The Public Domain");
+		System.out.println("H - Architecture, Buildings, Houses & The Home");
+		System.out.println("I - Money & Commerce");
+		System.out.println("K - Entertainment, Sports & Games");
+		System.out.println("L - Life & Living Things");
+		System.out.println("M - Movement, Location, Travel & Transport");
+		System.out.println("O - Substances, Materials, Objects");
+		System.out.println("S - Social Actions, States & Processes");
+		System.out.println("T - Time");
+		System.out.println("W - The World & Our Environment");
+		System.out.println("X - Psychological Actions, States & Processes");
+		System.out.println("Other characters --- purely random");
+		Scanner s = new Scanner(System.in);
+		char category = s.next().charAt(0);
+
 		//new instance 
 		CFG cfg1 = new CFG();
+		cfg1.category = category;
+		System.out.println("category is " + cfg1.category);
 		cfg1.readRules();
 		cfg1.readCorpus();
 
 		// System.out.println(cfg1.generateRandom("S"));
-		for(int i = 0; i < 11; i++) {
+
+		for(int i = 0; i < 1; i++) {
+			System.out.println("");
 			System.out.println(cfg1.generateRandom("S"));
 		}
 	}	
