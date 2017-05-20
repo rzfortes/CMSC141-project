@@ -712,3 +712,91 @@ sa,NNI
 na,LK
 ng,LK
 nga,LK
+basin,ADV
+bisan,ADV
+bisan,ADV
+bisan karon,ADV
+busa,ADV
+daw,ADV
+didto,ADV
+diha,ADV
+dinha,ADV
+dinhi,ADV
+diri,ADV
+dugay na,ADV
+gahapon,ADV
+gahapon sa buntag,ADV
+gahapon sa hapon,ADV
+gahapon sa udto,ADV
+ganina,ADV
+gawas,ADV
+gihapon,ADV
+ilabi,ADV
+inigkabuntag,ADV
+inigkagabii,ADV
+inigkahapon,ADV
+inigkahuman,ADV
+inigkaugma,ADV
+kada adlaw,ADV
+kada bulaw,ADV
+kada buntag,ADV
+kada gabii,ADV
+kada hapon,ADV
+kada higayon,ADV
+kada semana,ADV
+kada tuig,ADV
+kada udto,ADV
+kagabii,ADV
+kagahapon,ADV
+kagahapon sa buntag,ADV
+kagahapon sa hapon,ADV
+kagahapon sa udto,ADV
+kaganina,ADV
+kanunay,ADV
+karon,ADV
+karon dayon,ADV
+karong adlawa,ADV
+karong bulan,ADV
+karong Dominggo,ADV
+karong Enero,ADV
+karong gabii,ADV
+karong semana,ADV
+karong tuig,ADV
+matod,ADV
+nianang panahona,ADV
+pagkahuman,ADV
+pagusab,ADV
+pinaagi niana,ADV
+pirmi,ADV
+pod,ADV
+puhon,ADV
+sa adlaw sunod ugma,ADV
+sa adlawng una gahapon,ADV
+sa adlawng una kagahapon,ADV
+sa bisan asa,ADV
+sa bisan diin,ADV
+sa bisan kanus-a,ADV
+sa bisan unsang paagiha,ADV
+sa gawas,ADV
+sa kalit,ADV
+sa sulod,ADV
+sa umalabot,ADV
+sa usa ka dapit,ADV
+sa usa ka paagi,ADV
+sab,ADV
+sunod bulan,ADV
+sunod semana,ADV
+sunod tuig,ADV
+tingali,ADV
+ugma,ADV
+ugma sa buntag,ADV
+ugma sa gabii,ADV
+ugma sa hapon,ADV
+ugma sa udto,ADV
+unya,ADV
+unya sa buntag,ADV
+unya sa gabii,ADV
+unya sa hapon,ADV
+unya sa udto,ADV
+usab,ADV
+usahay,ADV
