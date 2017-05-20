@@ -144,7 +144,7 @@ public class CFG {
 		cfg1.readCorpus();
 
 		// System.out.println(cfg1.generateRandom("S"));
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < 11; i++) {
 			System.out.println(cfg1.generateRandom("S"));
 		}
 	}	
