@@ -1,0 +1,38 @@
+NN si NN, S
+NN ang NN, S
+Ang NN NN, S
+ADJ si NN, S
+ADV si NN, S
+ADJ ang NN, S
+PP ang NN, S
+VRB ang NN, S
+VRB SP PP, S
+VRB SP DO IO, S
+VRB OC O SP, S
+VRB SP O OC, S
+VRB SP O PP, S
+VRB SP AP, S
+VRB C SP, S
+VRB OC O SP, S
+VRB SP, S
+ADV NN, S
+VRB SP AP, S
+NN|NNP|NNI NN|NNI mga NN|si NN, SP
+mga NN, SP
+og ADJ|ADV, AP
+PREP sa NN, PP
+PREP NN, PP
+PREP ni NN, PP
+FOR sa NN, PP
+FOR NN, PP
+FOR ni NN, PP
+FOR kang NN, PP
+gikan sa NN, PP
+gikan NN, PP
+gikan ni NN, PP
+gikan kang NN, PP
+og NN, C
+og NN, O
+og NN, DO
+sa NN, IO
+gikan NNP, OC

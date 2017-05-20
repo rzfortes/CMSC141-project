@@ -1,33 +1,35 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.lang.*;
+import java.io.*;
 
-public class CFG {
-	
-	// new datatype for production
-	HashMap<String, ArrayList<String>> prod = new HashMap<String, ArrayList<String>>();
+public class CFG {	
+	//datastruct for productions
+	HashMap<String, ArrayList<String>> prod = new HashMap<String, ArrayList<String>>();	
+	List<String> split_rhs;
+	ArrayList<String> lhs_values;	
 
-	// constructor
-	CFG() {
-		// do nothing
-	}
+	//datastruct for storing rules
+	ArrayList <ArrayList <String>> angProd = new ArrayList <ArrayList <String>> ();
+	ArrayList <String> list = new ArrayList <String> (); 
+
+	//datastruct for generating random
+	List<String> randomProd;
 	
-	public void add_prod(String rhs, String lhs) {
+
+	public void addProd(String rhs, String lhs) {
+		// System.out.println("RHS "+rhs);
+		// System.out.println("LHS "+lhs);
 		// several productions are separated by '|'
-		List<String> split_rhs = Arrays.asList(rhs.split("\\|"));
+		split_rhs = Arrays.asList(rhs.split("\\|"));
 		
 		// if lhs already exists as a key, get its values and append nalang the new set of rhs
-		ArrayList<String> lhs_values = prod.get(lhs);
+		lhs_values = prod.get(lhs);
 		if(prod.containsKey(lhs)) {
 			for(int i = 0; i < split_rhs.size(); i++) {
 				lhs_values.add(split_rhs.get(i));
 			}
-		} else { // put the new key and its values
+		} 
+		else { // put the new key and its values
 			lhs_values = new ArrayList<>();
 			for(int i = 0; i < split_rhs.size(); i++) {
 				lhs_values.add(split_rhs.get(i));
@@ -36,28 +38,29 @@ public class CFG {
 		}
 		
 		// print to check entry set
-//		 System.out.println(prod.entrySet());
-			
+		// System.out.println(prod.entrySet());	
+		// System.out.println(prod);		
 	}
-	
-	public String gen_random(String symbol) {
+	public String generateRandom(String symbol) {
 		String sentence = "";
 		
 		Random rand = new Random();
 		
-		List<String> rand_prod = prod.get(symbol);
-		
-//		System.out.println(rand_prod.size());
-		
-		int r = rand.nextInt(rand_prod.size());
+		randomProd = prod.get(symbol);
 
-		String str = rand_prod.get(r);
+		// System.out.println(symbol);
+		// System.out.println(prod);		
+		// System.out.println(randomProd.size());
+		
+		int r = rand.nextInt(randomProd.size());
+
+		String str = randomProd.get(r);
 
 		if(str.contains(" ")) {
 			String split_process[] = str.split("\\s+");
 			for(int i = 0; i < split_process.length; i++) {
 				if(prod.keySet().contains(split_process[i])) {
-					sentence += gen_random(split_process[i]);
+					sentence += generateRandom(split_process[i]);
 				} else {
 					sentence += split_process[i] + " ";
 				}
@@ -65,7 +68,7 @@ public class CFG {
 		} else {
 
 			if(prod.keySet().contains(str)) {
-					sentence += gen_random(str);
+					sentence += generateRandom(str);
 			} else {
 					sentence += str + " ";
 			}
@@ -73,71 +76,77 @@ public class CFG {
 		
 		return sentence;
 	}
-	
-	public static void main(String[] args) {
-		
-		CFG cfg1 = new CFG();
-		
-		// for now, initialize productions
-		cfg1.add_prod("NN ang NN", "S");
-		cfg1.add_prod("Ang NN NN", "S");
-		cfg1.add_prod("ADJ si NN", "S");
-		cfg1.add_prod("ADJ ang NN", "S");
-		cfg1.add_prod("ADV ang NN", "S");
-		
-		cfg1.add_prod("PP ang NN", "S");
-		cfg1.add_prod("VRB SP PP", "S");
-		cfg1.add_prod("VRB SP AP", "S");
-		cfg1.add_prod("VRB C SP", "S");
-		cfg1.add_prod("VRB SP", "S");
-		cfg1.add_prod("VRB O SP", "S");
-		cfg1.add_prod("VRB SP DO IO", "S");
-		cfg1.add_prod("VRB OC O SP", "S");
-		cfg1.add_prod("VRB SP O OC", "S");
-		cfg1.add_prod("VRB SP O PP", "S");
-		cfg1.add_prod("PREP sa NN", "PP");
-		cfg1.add_prod("PREP NN", "PP");
-		cfg1.add_prod("PREP ni NN", "PP");
-		cfg1.add_prod("PREP kang NN", "PP");
-		cfg1.add_prod("FOR sa NN", "PP");
-		cfg1.add_prod("FOR NN", "PP");
-		cfg1.add_prod("FOR ni NN", "PP");
-		cfg1.add_prod("FOR kang NN", "PP");
-		cfg1.add_prod("FROM sa NN", "PP");
-		cfg1.add_prod("FROM NN", "PP");
-		cfg1.add_prod("FROM ni NN", "PP");
-		cfg1.add_prod("FROM kang NN", "PP");
-		cfg1.add_prod("NN|NNP|NNI NN", "SP");
-		cfg1.add_prod("PZ NN|NNI PZ NN|si NN", "SP");
-		cfg1.add_prod("og ADJ|og NBR LK NN|ADV", "AP");
-		cfg1.add_prod("og NN", "C");
-		cfg1.add_prod("og NN", "O");
-		cfg1.add_prod("og NN", "DO");
-		cfg1.add_prod("sa NN", "IO");
-		cfg1.add_prod("FOR NNP| FROM NNP", "OC");
-		
-		// read corpus.txt, contains the terminals for each non-terminals
-		try (BufferedReader br = new BufferedReader(new FileReader("corpus.txt"))){
-			
+
+	//read and tokenize the rules
+	public void readRules() {
+		String rules = "rules.txt";
+        BufferedReader input = null;   
+        String line;
+        int flag = 0;
+        int limit = 1;       
+        try {
+            input = new BufferedReader(new FileReader(rules));
+            line = input.readLine();  
+            while (line != null) { 
+                if(!(line.isEmpty())) {
+                    StringTokenizer stk = new StringTokenizer(line, ",");
+                    while(stk.hasMoreTokens()) {
+                        String token=stk.nextToken();                                              
+                        if(flag < limit) {                      	
+                        	list.add(token);
+                        }
+                        else {
+                        	list.add(token);                        	
+                        	angProd.add(list);
+                        	list = new ArrayList <String> ();   
+                        	flag = -1;
+                        }
+                    	flag++;                                                                  	
+                    }         
+                }              
+                line = input.readLine(); 
+            }  
+        }
+        catch (Exception e) {
+            System.err.println(e);  
+            return;  
+        } 
+        for(int i = 0; i < angProd.size(); i++) {
+        	ArrayList <String> temp = angProd.get(i);
+        	String value = temp.get(1);
+        	value = value.replace(" ","");
+        	String key = temp.get(0);
+        	addProd(key,value);
+        }        
+	}
+
+	public void readCorpus() {
+		// read corpus.txt
+		String corpus = "corpus.txt";
+		try (BufferedReader br = new BufferedReader(new FileReader(corpus))){
 			String currentLine = "";
-			
 			while((currentLine = br.readLine()) != null) {
-//				System.out.println(currentLine);
+				// System.out.println(currentLine);
 				String split[] = currentLine.split(",");
-				cfg1.add_prod(split[0], split[1]);
-			}
-			
-		} catch (IOException e){
+				addProd(split[0], split[1]);
+			}		
+		} 
+		catch (IOException e){
 			e.printStackTrace();
 		}
-
-		
-//		 System.out.println(cfg1.gen_random("S"));
-		
-		// generate 10 sentences
-		for(int i = 0; i < 10; i++) {
-			System.out.println(cfg1.gen_random("S"));
-		}
 	}
+	public static void main(String[] args) {
+		int flag = 0;
+
+		//new instance 
+		CFG cfg1 = new CFG();
+		cfg1.readRules();
+		cfg1.readCorpus();
+
+		// System.out.println(cfg1.generateRandom("S"));
+		for(int i = 0; i < 10; i++) {
+			System.out.println(cfg1.generateRandom("S"));
+		}
+	}	
 
 }
