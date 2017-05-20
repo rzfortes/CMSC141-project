@@ -133,6 +133,11 @@ public class CFG {
 					if(split[2].charAt(0) == this.category) {
 						System.out.println(split[0] + " is in category " + split[2]);
 						addProd(split[0], split[1]);
+					} else {
+						if(this.category == 'N') {
+							//if the category doesn't belong to any of the given
+							addProd(split[0], split[1]);
+						}
 					}
 				} else {
 					addProd(split[0], split[1]);
@@ -143,8 +148,20 @@ public class CFG {
 			e.printStackTrace();
 		}
 	}
+
+	public static boolean contains(char c, char[] array) {
+	    for (char x : array) {
+	        if (x == c) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+
 	public static void main(String[] args) {
 		int flag = 0;
+		char categories[] = {'A', 'B', 'F', 'G', 'H', 'I', 'K', 'L', 'M',
+							 'O', 'S', 'T', 'W', 'X'};
 
 		System.out.println("What category?");
 		System.out.println("A - General & Abstract Terms");
@@ -164,6 +181,11 @@ public class CFG {
 		System.out.println("Other characters --- purely random");
 		Scanner s = new Scanner(System.in);
 		char category = s.next().charAt(0);
+
+		if(!contains(category, categories)) {
+			category = 'N';
+			//N meaning no category, or any category
+		}
 
 		//new instance 
 		CFG cfg1 = new CFG();
