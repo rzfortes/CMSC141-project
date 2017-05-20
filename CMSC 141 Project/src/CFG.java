@@ -79,31 +79,26 @@ public class CFG {
 		CFG cfg1 = new CFG();
 		
 		// for now, initialize productions
-		cfg1.add_prod("NN si NN", "S");
 		cfg1.add_prod("NN ang NN", "S");
 		cfg1.add_prod("Ang NN NN", "S");
 		cfg1.add_prod("ADJ si NN", "S");
-		cfg1.add_prod("ADV si NN", "S");
 		cfg1.add_prod("ADJ ang NN", "S");
+		cfg1.add_prod("ADV ang NN", "S");
+		
 		cfg1.add_prod("PP ang NN", "S");
-		cfg1.add_prod("VRB ang NN", "S");
 		cfg1.add_prod("VRB SP PP", "S");
+		cfg1.add_prod("VRB SP AP", "S");
+		cfg1.add_prod("VRB C SP", "S");
+		cfg1.add_prod("VRB SP", "S");
+		cfg1.add_prod("VRB O SP", "S");
 		cfg1.add_prod("VRB SP DO IO", "S");
 		cfg1.add_prod("VRB OC O SP", "S");
 		cfg1.add_prod("VRB SP O OC", "S");
 		cfg1.add_prod("VRB SP O PP", "S");
-		cfg1.add_prod("VRB SP AP", "S");
-		cfg1.add_prod("VRB C SP", "S");
-		cfg1.add_prod("VRB OC O SP", "S");
-		cfg1.add_prod("VRB SP", "S");
-		cfg1.add_prod("ADV NN", "S");
-		cfg1.add_prod("VRB SP AP", "S");
-		cfg1.add_prod("NN|NNP|NNI NN|NNI PZ NN|si NN", "SP");
-		cfg1.add_prod("PZ NN", "SP");
-		cfg1.add_prod("og ADJ|ADV", "AP");
 		cfg1.add_prod("PREP sa NN", "PP");
 		cfg1.add_prod("PREP NN", "PP");
 		cfg1.add_prod("PREP ni NN", "PP");
+		cfg1.add_prod("PREP kang NN", "PP");
 		cfg1.add_prod("FOR sa NN", "PP");
 		cfg1.add_prod("FOR NN", "PP");
 		cfg1.add_prod("FOR ni NN", "PP");
@@ -112,11 +107,14 @@ public class CFG {
 		cfg1.add_prod("FROM NN", "PP");
 		cfg1.add_prod("FROM ni NN", "PP");
 		cfg1.add_prod("FROM kang NN", "PP");
+		cfg1.add_prod("NN|NNP|NNI NN", "SP");
+		cfg1.add_prod("PZ NN|NNI PZ NN|si NN", "SP");
+		cfg1.add_prod("og ADJ|og NBR LK NN|ADV", "AP");
 		cfg1.add_prod("og NN", "C");
 		cfg1.add_prod("og NN", "O");
 		cfg1.add_prod("og NN", "DO");
 		cfg1.add_prod("sa NN", "IO");
-		cfg1.add_prod("gikan NNP", "OC");
+		cfg1.add_prod("FOR NNP| FROM NNP", "OC");
 		
 		// read corpus.txt, contains the terminals for each non-terminals
 		try (BufferedReader br = new BufferedReader(new FileReader("corpus.txt"))){
