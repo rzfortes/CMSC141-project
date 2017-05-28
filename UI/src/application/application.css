@@ -1,0 +1,19 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.button:hover {
+    -fx-background-color: #00C853;
+    -fx-text-fill: #ffffff;
+    -fx-text-alignment: center;
+}
+
+.button {
+    -fx-background-color: #ffffff;
+}
