@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="228.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuContentController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="228.0" text="Choose a Category" textAlignment="CENTER">
+         <font>
+            <Font name="Consolas" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton accessibleText="A" prefHeight="25.0" prefWidth="227.0" text="General &amp; Abstract Terms" />
+      <JFXButton accessibleText="B" prefHeight="25.0" prefWidth="227.0" text="The Body &amp; The Individual" />
+      <JFXButton accessibleText="F" prefHeight="25.0" prefWidth="227.0" text="Food &amp; Farming" />
+      <JFXButton accessibleText="G" prefHeight="25.0" prefWidth="227.0" text="Govt. &amp; The Public Domain" />
+      <JFXButton accessibleText="H" prefHeight="25.0" prefWidth="227.0" text="Architecture, Buildings, Houses &amp; The Home" />
+      <JFXButton accessibleText="I" prefHeight="25.0" prefWidth="227.0" text="Money &amp; Commerce" />
+      <JFXButton accessibleText="K" prefHeight="25.0" prefWidth="227.0" text="Entertainment, Sports &amp; Games" />
+      <JFXButton accessibleText="L" prefHeight="25.0" prefWidth="227.0" text="Life &amp; Living Things" />
+      <JFXButton accessibleText="M" prefHeight="25.0" prefWidth="227.0" text="Movement, Location, Travel &amp; Transport" />
+      <JFXButton accessibleText="O" prefHeight="25.0" prefWidth="227.0" text="Substances, Materials, Objects" />
+      <JFXButton accessibleText="S" prefHeight="25.0" prefWidth="227.0" text="Social Actions, States &amp; Processes" />
+      <JFXButton accessibleText="T" prefHeight="25.0" prefWidth="227.0" text="Time" />
+      <JFXButton accessibleText="W" prefHeight="25.0" prefWidth="227.0" text="The World &amp; Our Environment" />
+      <JFXButton accessibleText="X" prefHeight="25.0" prefWidth="227.0" text="Psychological Actions, States &amp; Processes" />
+   </children>
+</VBox>
