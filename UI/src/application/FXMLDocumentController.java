@@ -221,7 +221,6 @@ public class FXMLDocumentController implements Initializable {
         final_sentence = generateRandom("S");
         label.setText(final_sentence);
         prod.clear();
-        
     }
     
     // read Rules
