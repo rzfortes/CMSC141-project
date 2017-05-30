@@ -8,6 +8,10 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	
+	// for splash screen
+	public static Boolean isSplashLoaded = false;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -15,6 +19,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
+//			primaryStage.setTitle("Sentence Generator");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

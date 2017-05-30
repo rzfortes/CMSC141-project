@@ -5,13 +5,10 @@
  */
 package application;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +19,13 @@ import java.util.ResourceBundle;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +33,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 /**
  *
@@ -47,6 +54,8 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     @FXML
     private JFXButton generate_button;
+    @FXML
+    private AnchorPane anchorPane;
     
     // CFG variables starts here
     
@@ -68,6 +77,10 @@ public class FXMLDocumentController implements Initializable {
     // controls what happens in the application
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	// load the splash screen only once
+//    	if(!Main.isSplashLoaded) {
+//    		loadSplashScreen();
+//    	}
         
         // checks the transition of the hamburger
         HamburgerBackArrowBasicTransition trans = new HamburgerBackArrowBasicTransition(ham1);
@@ -78,8 +91,10 @@ public class FXMLDocumentController implements Initializable {
 
             if(menu.isShown()) {
                 menu.close();
+//                anchorPane.setStyle("-fx-background-color: #ffffff;");
             } else {
                 menu.open();
+//                anchorPane.setStyle("-fx-background-color: #000000;");
             }
 
         });
@@ -93,13 +108,11 @@ public class FXMLDocumentController implements Initializable {
             for(Node node : box.getChildren()) {
                 if(node.getAccessibleText() != null) {
                     node.addEventHandler(MouseEvent.MOUSE_CLICKED, (e)->{
-                        category = node.getAccessibleText().charAt(0);
+                        this.category = node.getAccessibleText().charAt(0);
                         trans.setRate(trans.getRate()*-1);
                         trans.play();
                         if(menu.isShown()) {
                             menu.close();
-                        } else {
-                            menu.open();
                         }
                         switch(node.getAccessibleText()) {
                             case "A":
@@ -153,23 +166,67 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    // loading splash screen
+    private void loadSplashScreen() {
+    	try {
+    		
+    		Main.isSplashLoaded = true;
+			StackPane pane = FXMLLoader.load(getClass().getResource("Splash.fxml"));
+			anchorPane.getChildren().setAll(pane);
+			
+			// for transition
+			FadeTransition fadeIn = new FadeTransition(Duration.seconds(3), pane);
+			fadeIn.setFromValue(0);
+			fadeIn.setToValue(1);
+			fadeIn.setCycleCount(1);
+			
+			FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), pane);
+			fadeOut.setFromValue(1);
+			fadeOut.setToValue(0);
+			fadeOut.setCycleCount(1);
+			
+			fadeIn.play();
+			// after fade in, fade out
+			fadeIn.setOnFinished((e)->{
+				fadeOut.play();
+			});
+			// after fade out, display the FXMLDocument.fxml
+			fadeOut.setOnFinished((e)->{
+				try {
+					AnchorPane parentContent = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+					anchorPane.getChildren().setAll(parentContent);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			});
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    
+    // CFG functions starts here
     public void runcfg() {
         // CFG calls here
             readRules();
             readCorpus();
     }
     
-    // CFG functions starts here
-    
     @FXML
     private void handleGenerateButton(ActionEvent event) {
-        runcfg();
+    	runcfg();
         final_sentence = generateRandom("S");
         label.setText(final_sentence);
+        prod.clear();
+        
     }
     
     // read Rules
     public void readRules() {
+    	// BufferedReader txtReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/mytextfile.txt")));
         String rules = "rules.txt";
         BufferedReader input;
         String line;
@@ -177,7 +234,7 @@ public class FXMLDocumentController implements Initializable {
         int limit = 1;
         
         try {
-            input = new BufferedReader(new FileReader(rules));
+            input = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(rules)));
             line = input.readLine();
             while(line != null) {
                 if(!(line.isEmpty())) {
@@ -213,7 +270,7 @@ public class FXMLDocumentController implements Initializable {
     
     // read corpus
     public void readCorpus() {
-        try(BufferedReader br = new BufferedReader(new FileReader("corpus.txt"))) {
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("corpus.txt")))) {
             String currentLine = "";
             while((currentLine = br.readLine()) != null) {
                 String split[] = currentLine.split(",");

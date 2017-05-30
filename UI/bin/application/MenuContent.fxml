@@ -7,9 +7,9 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="228.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuContentController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="228.0" text="Choose a Category" textAlignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="228.0" style="-fx-background-color: #ffebee;" text="Choose a Category" textAlignment="CENTER">
          <font>
-            <Font name="Consolas" size="18.0" />
+            <Font name="Gabriola" size="36.0" />
          </font>
       </Label>
       <JFXButton accessibleText="A" prefHeight="25.0" prefWidth="227.0" text="General &amp; Abstract Terms" />
